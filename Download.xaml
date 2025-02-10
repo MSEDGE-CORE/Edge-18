@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="App3.Download"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App3"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
+
+    <Grid x:Name="Grid">
+        <Button Click="DownloadButton" ToolTipService.ToolTip="下载" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" VerticalAlignment="Top" Height="36" Margin="0,7,10,0">
+            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE118;" FontSize="16"/>
+        </Button>
+        <Grid>
+            <Line Name ="SeparateLineLight" Stroke="LightGray" X1="0" Y1="50" Y2="50" StrokeThickness = "0.5"/>
+            <Line Name ="SeparateLineDark" Stroke="Gray" X1="0" Y1="50" Y2="50" StrokeThickness = "0.5"/>
+        </Grid>
+
+        <muxc:WebView2 x:Name="EdgeWebView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,50,0,0" CoreWebView2Initialized="EdgeWebView_CoreWebView2Initialized"/>
+    </Grid>
+</Page>

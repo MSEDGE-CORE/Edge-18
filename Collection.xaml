@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="App3.Collection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App3"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
+
+    <Grid Name="Grid" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20,20,20,0">
+        <TextBlock FontFamily="HarmonyOS Sans SC" x:Name="PageTitle" Text="收藏夹" FontWeight="Bold" FontSize="20" Margin="12,0,0,0"/>
+        <StackPanel x:Name="DefaultToolBar" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-3,0,0">
+            <Button Height="32" Name="Edit_Collection" ToolTipService.ToolTip="编辑" Content="&#xE104;" FontFamily="Segoe Fluent Icons" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" FontSize="12" Click="Edit_Collection_Click"/>
+            <Button Height="32" Name="Add_Collection" Content="&#xE109;" ToolTipService.ToolTip="添加" FontFamily="Segoe Fluent Icons" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" FontSize="12" Click="Add_Collection_Click">
+                <Button.Flyout>
+                    <Flyout x:Name="Add_Collection_Flyout" Placement="BottomEdgeAlignedRight">
+                        <StackPanel MinWidth="280" MaxWidth="280" Width="280">
+                            <TextBlock FontFamily="HarmonyOS Sans SC" Text="添加到收藏夹" FontWeight="Bold" FontSize="16" Margin="0,0,0,14"/>
+                            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,12">
+                                <TextBlock FontFamily="HarmonyOS Sans SC" Text="名称" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBox FontFamily="HarmonyOS Sans SC" Name="Collection_Title" HorizontalAlignment="Right" Width="240" MinWidth="240" MaxWidth="240" />
+                            </Grid>
+                            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,12">
+                                <TextBlock FontFamily="HarmonyOS Sans SC" Text="链接" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBox FontFamily="HarmonyOS Sans SC" Name="Collection_Uri" HorizontalAlignment="Right" Width="240" MinWidth="240" MaxWidth="240" />
+                            </Grid>
+                            <Button FontFamily="HarmonyOS Sans SC" Content="完成" Width="64" IsEnabled="True" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0" Click="Add_Collection_Complete_Click" Style="{StaticResource AccentButtonStyle}"/>
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+            <Button Height="32" Name="Close" Click="Close_Click" Content="&#xE8BB;" ToolTipService.ToolTip="关闭" FontFamily="Segoe Fluent Icons" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" FontSize="12" Margin="4,0,2,0">
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Escape"/>
+                </Button.KeyboardAccelerators>
+            </Button>
+        </StackPanel>
+        <StackPanel x:Name="EditToolBar" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed" Margin="0,-3,0,0" >
+            <Button Height="32" Name="Up_Button" Content="&#xE110;" ToolTipService.ToolTip="上移" FontFamily="Segoe Fluent Icons" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" FontSize="12" Click="Up_Button_Click">
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Up"/>
+                </Button.KeyboardAccelerators>
+            </Button>
+            <Button Height="32" Name="Down_Button" Content="&#xE74B;" ToolTipService.ToolTip="下移" FontFamily="Segoe Fluent Icons" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" FontSize="12" Click="Down_Button_Click">
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Down"/>
+                </Button.KeyboardAccelerators>
+            </Button>
+            <Button Height="32" Name="Delete_Button" Content="&#xE107;" ToolTipService.ToolTip="删除" FontFamily="Segoe Fluent Icons" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" FontSize="12" Click="Delete_Button_Click">
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Delete"/>
+                </Button.KeyboardAccelerators>
+            </Button>
+            <Button Height="32" Name="Complete_Button" Content="&#xE10B;" ToolTipService.ToolTip="完成" FontFamily="Segoe Fluent Icons" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" FontSize="12" Click="Complete_Button_Click">
+                <Button.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Enter"/>
+                </Button.KeyboardAccelerators>
+            </Button>
+            <Button Height="32" Name="Close2" Click="Close_Click" ToolTipService.ToolTip="关闭" Content="&#xE8BB;" FontFamily="Segoe Fluent Icons" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" FontSize="12" Margin="4,0,2,0">
+            </Button>
+        </StackPanel>
+        <ListView HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,44,0,0" SelectionChanged="ListView_SelectionChanged" Name="ListView">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Collection_List">
+                    <StackPanel>
+                        <TextBlock FontFamily="HarmonyOS Sans SC" Text="{x:Bind CollectionTitle}" FontSize="16" Margin="0,8,0,0"/>
+                        <TextBlock FontFamily="HarmonyOS Sans SC" Text="{x:Bind CollectionUri}" FontSize="12" Margin="0,4,0,8"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
